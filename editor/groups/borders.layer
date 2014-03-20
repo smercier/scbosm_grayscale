@@ -1,0 +1,42 @@
+LAYER {
+	2-18 {
+        NAME: 'admin_fr'
+        TYPE: POLYGON
+        @connection
+        @layerconfig
+      	DATA {
+         	2-18:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
+   		}
+        LABELITEM: "name"
+        1-18{
+        CLASS {
+            STYLE {
+                OUTLINECOLOR: 200 200 200
+                SIZE {
+                    1-3: 0.3
+					5-18: 0.9
+                }
+                PATTERN {{
+					5.0 5.0
+				}}
+            }
+            
+            7-18 {
+                LABEL{
+                  TYPE: TRUETYPE
+                  PARTIALS: FALSE
+                  ANTIALIAS: true
+                  FONT: 'sc'
+                  ANGLE: FOLLOW
+                  SIZE: 8
+                  COLOR: '#564A3D'
+                  OUTLINECOLOR: 255 255 255
+                  OUTLINEWIDTH: 1
+                  REPEATDISTANCE: 100
+                  MINDISTANCE: 500
+               }
+        	}
+          }
+        }
+    }
+}

@@ -1,0 +1,483 @@
+VARIABLES {
+    ##Layers configurations (included in almost all layers)
+    connection {
+        CONNECTION: "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE: POSTGIS
+    }
+    layerconfig {
+        GROUP: 'default'
+        STATUS: ON
+        PROJECTION {{
+            'init=epsg:900913'
+        }}
+        PROCESSING: 'LABEL_NO_CLIP=ON'
+        PROCESSING: 'CLOSE_CONNECTION=DEFER'
+    }
+
+    ##Label configurations
+    labelconfig {
+		TYPE: TRUETYPE
+        PARTIALS: FALSE
+        MINFEATURESIZE: AUTO
+        ANTIALIAS: true
+	}
+	labelconfig_mainroads {
+        @labelconfig
+		FONT: 'sc'
+        MINDISTANCE: 300
+        REPEATDISTANCE: 10
+        OUTLINEWIDTH: 2
+        ANGLE: FOLLOW
+        BUFFER: 3
+	}
+	labelconfig_minorroads {
+        @labelconfig                    
+		FONT: 'sc'
+        MINDISTANCE: 500
+        REPEATDISTANCE: 10
+        OUTLINEWIDTH: 2
+        ANGLE: FOLLOW
+        BUFFER: 3
+	}
+	labelconfig_shields {
+        @labelconfig
+		PRIORITY {
+			1-9: 5
+            10-13: 4
+            14-18: 1
+		}
+ 		FONT: 'sc'
+ 		REPEATDISTANCE: 20
+        MINDISTANCE {
+ 			1-11: 150
+			12-18: 200
+        }
+      	BUFFER: 10
+	}
+	labelconfig_landusage {
+        @labelconfig
+        BUFFER: 2
+		FONT: 'sc'
+ 		SIZE {
+ 			1-14: 8
+			15: 9
+            16-18: 10
+        }
+        OUTLINECOLOR: 255 255 255
+        OUTLINEWIDTH: 1
+ 		WRAP: ' '
+        MAXLENGTH: 6
+        ALIGN: CENTER
+	}
+	labelconfig_park_golf_nature {
+		@labelconfig_landusage
+        ENCODING: 'utf-8'
+        COLOR: '#4B674B'
+ 		PRIORITY {
+            1-12: 2
+			13: 6
+			14-18: 10
+        }
+        REPEATDISTANCE: 1
+        POSITION: LC
+        BUFFER: 5
+        OFFSET: @park_golf_nature_offset        
+	}
+
+	labelconfig_buildings {
+		@labelconfig_landusage
+        ENCODING: 'utf-8'
+        COLOR: '#675A4A'
+ 		PRIORITY {
+            1-15: 2
+			16-18: 10
+        }
+        POSITION: CR
+        BUFFER: 5
+        OFFSET: 0 0       
+	}
+
+	labelconfig_public_transport {
+		FONT: 'scb'
+		TYPE: TRUETYPE
+        PARTIALS: FALSE
+        COLOR: 0 0 0
+        OUTLINECOLOR: 0 0 0
+        BUFFER: 12
+        POSITION: AUTO
+	}
+	labelconfig_places {
+		@labelconfig
+        ENCODING: 'utf-8'
+        WRAP: ' '
+        MAXLENGTH: 4
+        ALIGN: CENTER
+        POSITION {
+			1-9: AUTO 
+			10-18: CC
+        }
+	}
+	labelconfig_states {
+		@labelconfig
+        ENCODING: 'utf-8'
+        WRAP{ 
+			1-6:' '
+         	7-18:'#'   
+        }
+        MAXLENGTH: 4
+        ALIGN: CENTER
+        POSITION: CC
+	}
+    labelconfig_waterareas {
+    	MINFEATURESIZE {
+        	1-10: AUTO
+           	11: 50
+            12: 25
+            13: 22
+      		14: 18
+            15: 15
+            16: 15
+            17-18: AUTO
+    	} 
+        TYPE: TRUETYPE
+        PARTIALS: FALSE
+        ANTIALIAS: true
+        FONT: 'sco'
+        ENCODING: 'utf-8'
+        MINDISTANCE: 200
+        SIZE: 8
+        COLOR: 255 255 255
+        OUTLINECOLOR: '#E5E5E5'
+        OUTLINEWIDTH: 2
+        WRAP: ' '
+        MAXLENGTH: 5
+        ALIGN: CENTER
+	}
+	labelconfig_waterways {
+		@labelconfig
+        FONT: 'sc'
+        ENCODING: 'utf-8'
+        MINDISTANCE: 200
+        REPEATDISTANCE: 400
+        SIZE {
+			1-15: 8
+            16-18: 9
+		}
+
+        COLOR: 255 255 255
+        OUTLINECOLOR: 170 170 170
+        OUTLINEWIDTH: 1
+        ANGLE: FOLLOW
+        BUFFER: 3
+	}
+
+	##Water
+	waterarea_clr: '#E5E5E5'
+	waterways_clr: '#E5E5E5'
+    
+    waterways_width {
+		1-14: 1
+        15: 0.6
+        16: 1
+        17-18: 1.5
+	}
+
+	##Landusage    
+	public_transport_symbol_size {                       
+		1-14: 9
+        15: 12
+        16-18: 14
+	}
+ 	public_transport_symbol: 'transportsquare'
+    
+    public_transport_lbl_size {
+ 		1-14: 5.5
+		15: 7
+        16-18: 8
+    }
+
+	greenland_clr: '#DDE6D5'
+	park_golf_nature_offset: 0 -20
+    
+    transport_clr: '#DFDBD4'
+    transport_offset: 0 -20
+    
+    ##Roads
+    roads_lbl_priority {
+		1-12: 1
+        13: 5
+        14-18: 9
+	}
+
+	##Motorway links
+	motorway_links_clr: 255 255 255
+    motorway_links_width {
+        1-11: 0.5   
+        12: 1                   
+		13: 2
+        14: 3
+		15: 4.5
+        16: 7
+        17-18: 9
+	}
+
+	##Motorways
+    motorway_clr: 255 255 255
+    motorway_width {
+		1-5: 0.5
+        6-8: 1
+        9: 1.8
+        10:2.2
+        11-12: 2.5
+        13: 3
+        14-15: 5.5
+        16: 13
+        17-18: 16
+	}
+	motorway_ol_clr: 180 180 180
+	motorway_ol_width {
+		6-13: 1
+        14: 0.8
+        15-18: 0.5
+	}
+	motorway_lbl_size {
+        1-11: 7
+        12: 7.3
+        13: 7.6
+		14-15: 8
+        16-18: 9
+	}
+	motorway_lbl_clr: '#828282'
+    motorway_lbl_priority: 9
+    
+    ##Trunk links
+    trunk_links_clr {
+		6-6: 255 255 255
+        7-18: 255 255 255
+	}
+	trunk_links_width {
+        1-6: 0.2              
+        7-11: 0.5   
+        12: 1                  
+		13: 2
+        14: 3
+		15: 4.5
+        16: 7
+        17-18: 9
+	}
+
+	##Trunks
+	trunk_clr {
+		1-7: 255 255 255
+        8-18: 255 255 255
+	}
+	trunk_width {
+		1-6: 0.5
+        7-8: 1
+        9: 1.5
+        10: 1.7
+        11: 2.3
+        12:  2.6
+		13: 2.8
+        14: 4
+        15: 4
+        16: 13
+        17-18: 15
+	}
+	trunk_ol_clr {
+ 		1-8: 180 180 180
+		9-18: 180 180 180
+    }
+	trunk_ol_width {
+        6-8: 1.4
+        9-10: 0.4
+        11-13: 0.4
+		14: 0.6
+        15-18: 0.6
+	}
+	trunk_lbl_size {
+        1-11: 7
+        12: 7.3
+        13:7.6
+		14-15: 8
+        16-18: 9
+	}
+	trunk_lbl_clr: '#828282'
+    
+    ##Primaries
+	primary_clr {
+		1-8: 255 255 255
+        9-18: 255 255 255
+	}
+	primary_width {
+        1-8: 0.3
+		9: 0.9
+        10: 1
+        11: 1.8
+        12: 2.1
+        13: 2.4
+        14: 4
+        15: 9
+        16: 13
+        17-18: 15
+	}
+	primary_ol_clr: 180 180 180
+	primary_ol_width {
+        1-8: 0.1
+		9-14: 0.3
+        15-18:0.9
+	}
+	primary_lbl_size {
+        1-11: 7
+		12: 7.3
+        13: 7.6
+		14-15: 8
+        16-18: 9
+	}
+	primary_lbl_clr: '#828282'
+    
+    ##Secondaries
+	secondary_clr {
+		1-8: 255 255 255
+        9-18: 255 255 255
+	}
+	secondary_width {
+		1-8: 0
+        9-10: 0.75
+        11: 1.5
+        12: 1.8
+        13: 2.1
+        14: 3.5
+        15: 7
+        16: 12
+        17-18: 14
+	}
+	secondary_ol_clr: 180 180 180
+	secondary_ol_width {
+        1-10: 0.1
+		11-13: 0.3
+        14: 0.6
+		15-18: 0.5
+	}
+	secondary_lbl_size {
+        1-11: 6.5
+		12: 7
+        13: 7.3
+		14-15: 7.5
+        16-18: 8.5
+	}
+	secondary_lbl_clr: '#828282'
+    
+    ##Tertiaries
+	tertiary_clr {
+		1-13: 255 255 255 #'#F8F392'
+        14-18:255 255 255 #'#F8F392'
+	}
+	tertiary_width {
+		1-10: 0.1
+        11: 0.2
+        12-13: 0.3
+        14: 2
+        15: 3
+        16: 6
+        17-18: 8
+	}
+	tertiary_ol_clr: 180 180 180
+	tertiary_ol_width {
+        1-10: 0.1
+		11-13: 0.3
+        14: 0.5
+        15: 0.5
+		16-18: 0.5
+	}
+	tertiary_lbl_size {
+		1-15: 7.2
+        16-18: 8
+	}
+	tertiary_lbl_clr: '#828282'
+    
+    ##Others
+    other_clr {
+		1-13: 255 255 255
+        14-18: 255 255 255
+	}
+	other_width {
+		1-12: 0.2
+        13: 0.2
+        14: 2
+        15: 3
+        16: 7
+        17-18: 7
+	}
+	other_ol_clr: 180 180 180
+	other_ol_width {
+        1-12: 0.1           
+		13: 0.1
+        14-15: 0.1
+		16-18: 0.5
+	}
+	other_lbl_size {
+		1-15: 6.5
+        16-18: 7.5
+	}
+	other_lbl_clr: '#828282'
+    
+    ##Tracks
+    track_clr {
+		1-15: 255 255 255
+        16-18: 255 255 255
+	}
+	track_width {
+		1-11: 0
+        12: 0.5
+        13: 0.5
+        14-18: 0.5
+	}
+	track_ol_clr: 180 180 180
+	track_ol_width {
+		1-13: 0.3
+        14: 0.5
+		15-18: 0.5
+	}
+	track_lbl_size {
+		1-15: 6
+        16-18: 7
+	}
+	track_lbl_clr: '#333333'
+    
+    ##Pedestrians
+	pedestrian_clr: 255 255 255
+    pedestrian_width {
+		1-18:0.1
+	}
+	pedestrian_ol_clr: 180 180 180
+	pedestrian_ol_width {
+		1-13: 0.3
+        14: 0.4
+		15-18: 0.5
+	}
+	pedestrian_lbl_size {
+		1-15: 6
+        16-18: 7
+	}
+	pedestrian_lbl_clr: '#333333'
+    
+    ##Tunnels
+	tunnel_opacity: 40
+    
+    ##Oneways
+    oneway_from {
+		GAP: -80
+        ANGLE: -180
+        SYMBOL: 'oneway'
+        COLOR: 180 180 180
+        SIZE: 8
+	}
+	oneway_to {
+		GAP: -80
+        ANGLE: 0
+        SYMBOL: 'oneway'
+        COLOR: 180 180 180
+        SIZE: 8
+	}
+}

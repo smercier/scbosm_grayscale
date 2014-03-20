@@ -1,0 +1,31 @@
+
+LAYER {
+	1-18 {
+        NAME: 'land'
+        TYPE: POLYGON
+        GROUP: 'default'
+        STATUS: ON
+        PROJECTION {
+            1-3 {{
+				'init=epsg:4326'
+            }}
+        	4-18 {{
+				'init=epsg:3857'
+			}}
+        }
+		DATA {
+			1-3: "../pdata/osm/TM_WORLD_BORDERS-0.3.shp"
+            4-6: "../pdata/osm/shoreline_300.shp"
+            7-18: "../pdata/osm/processed_p.shp"
+		}
+        CLASS {
+            STYLE {
+            	COLOR { 
+					1-13: 250 250 250
+                    14-18: 250 250 250
+                }
+    			OUTLINECOLOR: 250 250 250
+            }
+        }
+    }
+}

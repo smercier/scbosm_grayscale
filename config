@@ -1,0 +1,6 @@
+ORDER {
+ 1: groups/land.layer
+ 2: groups/borders.layer
+ 3: groups/water.layer
+ 4: groups/roads.layer
+}
