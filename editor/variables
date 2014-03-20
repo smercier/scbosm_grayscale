@@ -14,6 +14,35 @@ VARIABLES {
         PROCESSING: 'CLOSE_CONNECTION=DEFER'
     }
 
+    	##Water
+	waterarea_clr: '#E5E5E5'
+	waterways_clr: '#E5E5E5'
+    waterways_width {
+		1-14: 1
+        15: 0.6
+        16: 1
+        17-18: 1.5
+	}
+    land_clr: 250 250 250
+    land_ol_clr: 250 250 250
+    
+ 	greenland_clr: '#eef4e3'
+    nature_reserve_clr: '#d8e6be'
+    golf_course_clr: '#BED9A6'
+    residential_clr: '#F2F0EA'
+    residential_clr_lbl: '#564A3D'
+    dark_green_lbl: '#4B674B'
+    industrial_clr: '#DFDBD4'
+    industrial_clr_lbl: '#564A3D'
+    commercial_clr: '#F2F0EA'
+    commercial_clr_lbl: '#564A3D'
+    cemetery_clr: '#DFDBD4'
+    cemetery_clr_lbl: '#564A3D'
+	park_golf_nature_offset: 0 -20    
+    transport_clr: '#DFDBD4'
+    transport_offset: 0 -20   
+ 
+
     ##Label configurations
     labelconfig {
 		TYPE: TRUETYPE
@@ -171,16 +200,7 @@ VARIABLES {
         BUFFER: 3
 	}
 
-	##Water
-	waterarea_clr: '#E5E5E5'
-	waterways_clr: '#E5E5E5'
-    
-    waterways_width {
-		1-14: 1
-        15: 0.6
-        16: 1
-        17-18: 1.5
-	}
+
 
 	##Landusage    
 	public_transport_symbol_size {                       
@@ -195,12 +215,6 @@ VARIABLES {
 		15: 7
         16-18: 8
     }
-
-	greenland_clr: '#DDE6D5'
-	park_golf_nature_offset: 0 -20
-    
-    transport_clr: '#DFDBD4'
-    transport_offset: 0 -20
     
     ##Roads
     roads_lbl_priority {
@@ -447,6 +461,7 @@ VARIABLES {
     
     ##Pedestrians
 	pedestrian_clr: 255 255 255
+    pedestrian_clr_lbl: '#564A3D'
     pedestrian_width {
 		1-18:0.1
 	}

@@ -131,6 +131,27 @@ SYMBOL
 	TYPE svg
 	IMAGE "../symbols/transport_airport.svg"
 END
+    
+## Landusage
+SYMBOL
+   NAME "park"
+   TYPE TRUETYPE
+   FILLED true
+   FONT "icon"
+   ANTIALIAS false
+   CHARACTER "&#61836;"
+END 
+
+SYMBOL
+   NAME "aeroport"
+   TYPE TRUETYPE
+   FILLED true
+   FONT "icon"
+   ANTIALIAS false
+   CHARACTER "&#61554;"
+END     
+    
+## transport    
 
 SYMBOL
   	NAME "bussymbol"
