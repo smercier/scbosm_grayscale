@@ -1351,7 +1351,217 @@ LAYER {
 		}
 	}
 }
-            
+     
+/*
+
+This is a colored layer.  Need to find a complet font set to be more flexible.  To see this layer, simpli need to change "0" level to "9-18" 
+
+*/
+
+
+LAYER {
+	0 {
+        NAME: 'public_transport'
+        TYPE: ANNOTATION
+        @layerconfig
+        @connection
+        DATA {
+			1-15: "geometry from (select ref, geometry, osm_id, type, name from osm_transport_points where type in ('aerodrome', 'station', 'motorway_junction')) as foo using unique osm_id using srid=3857"
+			16-18: "geometry from (select ref, geometry, osm_id, type, name from osm_transport_points where type in ('bus_stop', 'station', 'motorway_junction', 'subway_entrance', 'terminal', 'tram_stop', 'aerodrome', 'helipad')) as foo using unique osm_id using srid=3857"
+		}
+    	LABELITEM: 'name'
+        CLASSITEM: 'type'
+        /*
+    	CLASS {
+			EXPRESSION: 'bus_stop'
+            TEXT: ' '
+            LABEL {
+				@labelconfig_public_transport
+        		STYLE {
+					COLOR: 255 255 255
+                	OUTLINECOLOR: 0 111 239
+                	WIDTH: 0.5
+                	SIZE: @public_transport_symbol_size
+                	SYMBOL: @public_transport_symbol
+				}
+            	STYLE {
+					COLOR: 0 111 239
+                	SIZE: @public_transport_lbl_size
+                	SYMBOL: 'bussymbol'
+				}
+			}
+		}
+        }
+		CLASS {
+			EXPRESSION: 'subway_entrance'
+            TEXT: ' '
+            LABEL {
+				@labelconfig_public_transport
+                STYLE {
+					COLOR: 0 111 239
+                    OUTLINECOLOR: 255 255 255
+                    WIDTH: 0.5
+                    SIZE: @public_transport_symbol_size
+                    SYMBOL: @public_transport_symbol
+				}
+            	STYLE {
+					COLOR: 255 255 255
+                    SIZE: @public_transport_lbl_size
+                    SYMBOL: 'metrosymbol'
+				}
+			}
+		}
+       
+    	CLASS {
+			EXPRESSION: 'tram_stop'
+            TEXT: ' '
+            LABEL {
+				@labelconfig_public_transport
+                STYLE {
+					COLOR: 0 111 239
+                    OUTLINECOLOR: 255 255 255
+                    WIDTH: 0.5
+                    SIZE: @public_transport_symbol_size
+                    SYMBOL: @public_transport_symbol
+				}
+            	STYLE {
+					COLOR: 255 255 255
+                    SIZE: @public_transport_lbl_size
+                    SYMBOL: 'tramwaysymbol'
+				}
+			}
+		}*/
+       CLASS {
+			EXPRESSION: ('[type]' = 'motorway_junction' AND (length('[ref]') <= 2 AND length('[ref]') > 0)) 
+			TEXT: '[ref]'
+            LABEL {
+                @labelconfig
+                FONT: 'sc'
+                SIZE: 6
+                COLOR: 255 255 255
+                BUFFER: 10
+                PRIORITY {
+                	1-15: 5
+          			16-18: 10
+                }
+                STYLE {
+                    SYMBOL: 'us-secondary-shield'
+                    SIZE: 11
+                    COLOR: '#769D51'
+                }
+			}
+        }
+       CLASS {
+			EXPRESSION: ('[type]' = 'motorway_junction' AND (length('[ref]') = 3 OR length('[ref]') = 4))
+			TEXT: '[ref]'
+            LABEL {
+                @labelconfig
+                FONT: 'sc'
+                SIZE: 6
+                COLOR: 255 255 255
+                BUFFER: 10
+                PRIORITY {
+                	1-15: 5
+          			16-18: 10
+                }
+                STYLE {
+                    SYMBOL: 'us-secondary-shield-wide'
+                    SIZE: 11
+                    COLOR: '#769D51'
+                }
+			}
+		}
+        CLASS {
+			EXPRESSION: ('[type]' = 'motorway_junction' AND length('[ref]') = 5)
+			TEXT: '[ref]'
+            LABEL {
+                @labelconfig
+                FONT: 'sc'
+                SIZE: 6
+                COLOR: 255 255 255
+                BUFFER: 10
+                PRIORITY {
+                	1-15: 5
+          			16-18: 10
+                }
+                STYLE {
+                    SYMBOL: 'us-secondary-shield-xwide'
+                    SIZE: 11
+                    COLOR: '#769D51'
+                }
+			}
+		}
+        CLASS {
+			EXPRESSION: ('[type]' = 'station')
+            1-14 {
+				TEXT: ' '
+            }
+            LABEL {
+				@labelconfig_landusage
+				COLOR: '#3B5C79'
+                POSITION: UC
+                PRIORITY: 10
+                ##OFFSET: 0 -10
+                STYLE {
+					COLOR: 255 255 255
+                    OUTLINECOLOR: 0 111 239
+                    WIDTH: 0.5
+                    SIZE: @public_transport_symbol_size
+                    SYMBOL: @public_transport_symbol
+				}
+            	STYLE {
+					COLOR: 0 111 239
+                    SIZE: @public_transport_lbl_size
+                    SYMBOL: 'stationsymbol'
+				}
+			}
+		}
+        CLASS {
+			EXPRESSION: ('[type]'='aerodrome' AND length('[name]') = 0)
+       		LABEL {
+                10-18 {
+					@labelconfig_landusage
+					COLOR: '#3F3931'
+                	PRIORITY: 3
+                    BUFFER: 5
+                	POSITION: LC
+                	OFFSET: @transport_offset
+                	STYLE {
+						GEOMTRANSFORM: 'labelpnt'
+                    	OFFSET: @transport_offset
+                    	SYMBOL: 'aeroport'
+                        COLOR: '#3F3931'
+                    	SIZE: 20
+					}
+                }
+			}
+		}
+        CLASS {
+			EXPRESSION: 'helipad'
+        	TEXT: 'H'
+        	LABEL {
+                1-18 {
+					@labelconfig
+                    FONT: 'sc'
+					COLOR: 0 111 239
+                	PRIORITY: 10
+                	POSITION: CC
+                	SIZE: 8
+                	STYLE {
+						GEOMTRANSFORM: 'labelpnt'
+                    	SYMBOL: 'transportsquare'
+                    	SIZE {
+							1-16: 13
+                        	17-18: 15
+						}
+                		COLOR: @transport_clr
+					}
+                }
+			}
+		}
+        
+    }
+}    
             
             
 
