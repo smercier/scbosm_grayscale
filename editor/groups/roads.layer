@@ -680,11 +680,11 @@ LAYER {
 			}
 		}
     	CLASS {
-            5-18 {
+            9-18 {
 				EXPRESSION: "motorway"
             	TEXT: ("[name]")
             	STYLE {
-            		5-18 {
+            		9-18 {
                    		OUTLINEWIDTH: @motorway_ol_width
                     	OUTLINECOLOR: @motorway_ol_clr
                         LINECAP: BUTT
@@ -717,7 +717,7 @@ LAYER {
 			}
 		}
     	CLASS {
-            6-18 {
+            10-18 {
 				EXPRESSION {
                     6: ("[type]" = "trunk")
 					7-18: ("[type]" = "trunk")
@@ -743,7 +743,7 @@ LAYER {
         	}
 		}
      	CLASS {
-          8-18 {
+          9-18 {
 				EXPRESSION {
                     7-8: ("[type]" = "primary")
 					9-18: /primary|primary_link/
@@ -1081,7 +1081,7 @@ LAYER {
 
 ##Shields
 LAYER {
-	7-18 {
+	9-18 {
         NAME: 'shields'
         TYPE: LINE
         @connection
@@ -1094,7 +1094,7 @@ LAYER {
     	LABELITEM: 'shield_no'
         CLASSITEM: 'shield_class'
         CLASS {
-			7-18 {
+			9-18 {
 				EXPRESSION: ('[type]' = 'motorway')
                 TEXT : '[shield_class][shield_no]'
                 LABEL {
@@ -1128,7 +1128,64 @@ LAYER {
 		}
 	}
 }            
-            
+   
+
+
+##Aeroways
+LAYER {
+	11-18 {
+        NAME: 'aeroways'
+        TYPE: LINE
+        @connection
+        @layerconfig
+        DATA: 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+		CLASSITEM: 'type'
+        CLASS {
+			EXPRESSION: 'runway'
+            STYLE {
+				COLOR: 180 180 180
+                WIDTH {
+					1-11: 1
+                    12: 2
+                    13: 4
+                    14: 9
+                    15: 15
+                    16: 30
+                    17-18: 40
+				}
+            	LINECAP: BUTT
+                LINEJOIN: MITER
+			}
+        	STYLE {
+                COLOR: 80 80 80
+               	WIDTH {
+					1-15: 0
+                    16-18: 1
+				}
+				PATTERN {{
+					2 2
+				}}
+            	LINECAP: BUTT
+			}
+        	
+		}
+    	CLASS {
+			EXPRESSION: 'taxiway'
+            STYLE {
+				COLOR: 180 180 180
+                WIDTH {
+					1-10: 0
+                    11-12: 0.5
+                    13: 1
+                    14: 2
+                    15: 4
+                    16: 8
+                    17-18: 12
+				}
+			}
+		}
+	}
+}
             
             
             

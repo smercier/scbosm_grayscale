@@ -47,6 +47,7 @@ MAP
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 #---- LEVEL 2 ----#
     LAYER
@@ -96,6 +97,7 @@ MAP
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 #---- LEVEL 3 ----#
     LAYER
@@ -145,6 +147,7 @@ MAP
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 #---- LEVEL 4 ----#
     LAYER
@@ -193,6 +196,7 @@ MAP
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 #---- LEVEL 5 ----#
     LAYER
@@ -261,18 +265,9 @@ MAP
         #Bridges
         #Tunnel
         #Roads + oneways
-        CLASS
-            EXPRESSION "motorway"
-            TEXT ("[name]")
-            STYLE
-                OUTLINECOLOR 180 180 180
-                LINECAP BUTT
-                WIDTH 0.5
-                COLOR 255 255 255
-            END
-        END
     END
     #Shields
+    #Aeroways
 
 #---- LEVEL 6 ----#
     LAYER
@@ -370,29 +365,9 @@ MAP
         #Bridges
         #Tunnel
         #Roads + oneways
-        CLASS
-            EXPRESSION "motorway"
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1
-                OUTLINECOLOR 180 180 180
-                LINECAP BUTT
-                WIDTH 1
-                COLOR 255 255 255
-            END
-        END
-        CLASS
-            EXPRESSION ("[type]" = "trunk")
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1.4
-                OUTLINECOLOR 180 180 180
-                WIDTH 0.5
-                COLOR 255 255 255
-            END
-        END
     END
     #Shields
+    #Aeroways
 
 #---- LEVEL 7 ----#
     LAYER
@@ -503,71 +478,9 @@ MAP
         #Bridges
         #Tunnel
         #Roads + oneways
-        CLASS
-            EXPRESSION "motorway"
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1
-                OUTLINECOLOR 180 180 180
-                LINECAP BUTT
-                WIDTH 1
-                COLOR 255 255 255
-            END
-        END
-        CLASS
-            EXPRESSION ("[type]" = "trunk")
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1.4
-                OUTLINECOLOR 180 180 180
-                WIDTH 1
-                COLOR 255 255 255
-            END
-        END
     END
     #Shields
-    LAYER
-        MAXSCALEDENOM 8388608
-        MINSCALEDENOM 4194304
-        NAME 'shields7'
-        TYPE LINE
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads_gen0 where type = 'motorway' order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
-        FILTER (length('[shield_no]') != 0 )
-        LABELITEM 'shield_no'
-        CLASSITEM 'shield_class'
-        CLASS
-            EXPRESSION ('[type]' = 'motorway')
-            TEXT '[shield_class][shield_no]'
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                MINFEATURESIZE AUTO
-                ANTIALIAS true
-                PRIORITY 5
-                FONT 'sc'
-                REPEATDISTANCE 20
-                MINDISTANCE 150
-                BUFFER 10
-                SIZE 7
-                #COLOR: 255 255 255
-                STYLE
-                    GEOMTRANSFORM 'labelpoly'
-                    COLOR '#F2F2F2'
-                    OUTLINECOLOR 0 0 0
-                    WIDTH 0.3
-                END
-            END
-        END
-    END
+    #Aeroways
 
 #---- LEVEL 8 ----#
     LAYER
@@ -678,81 +591,9 @@ MAP
         #Bridges
         #Tunnel
         #Roads + oneways
-        CLASS
-            EXPRESSION "motorway"
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1
-                OUTLINECOLOR 180 180 180
-                LINECAP BUTT
-                WIDTH 1
-                COLOR 255 255 255
-            END
-        END
-        CLASS
-            EXPRESSION ("[type]" = "trunk")
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 1.4
-                OUTLINECOLOR 180 180 180
-                WIDTH 1
-                COLOR 255 255 255
-            END
-        END
-        CLASS
-            EXPRESSION ("[type]" = "primary")
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 0.1
-                OUTLINECOLOR 180 180 180
-                WIDTH 0.3
-                COLOR 255 255 255
-            END
-        END
     END
     #Shields
-    LAYER
-        MAXSCALEDENOM 4194304
-        MINSCALEDENOM 2097152
-        NAME 'shields8'
-        TYPE LINE
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
-        FILTER (length('[shield_no]') != 0 )
-        LABELITEM 'shield_no'
-        CLASSITEM 'shield_class'
-        CLASS
-            EXPRESSION ('[type]' = 'motorway')
-            TEXT '[shield_class][shield_no]'
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                MINFEATURESIZE AUTO
-                ANTIALIAS true
-                PRIORITY 5
-                FONT 'sc'
-                REPEATDISTANCE 20
-                MINDISTANCE 150
-                BUFFER 10
-                SIZE 7
-                #COLOR: 255 255 255
-                STYLE
-                    GEOMTRANSFORM 'labelpoly'
-                    COLOR '#F2F2F2'
-                    OUTLINECOLOR 0 0 0
-                    WIDTH 0.3
-                END
-            END
-        END
-    END
+    #Aeroways
 
 #---- LEVEL 9 ----#
     LAYER
@@ -891,16 +732,6 @@ MAP
             END
         END
         CLASS
-            EXPRESSION ("[type]" = "trunk")
-            TEXT ("[name]")
-            STYLE
-                OUTLINEWIDTH 0.4
-                OUTLINECOLOR 180 180 180
-                WIDTH 1.5
-                COLOR 255 255 255
-            END
-        END
-        CLASS
             EXPRESSION /primary|primary_link/
             TEXT ("[name]")
             STYLE
@@ -976,6 +807,7 @@ MAP
             END
         END
     END
+    #Aeroways
 
 #---- LEVEL 10 ----#
     LAYER
@@ -1294,6 +1126,7 @@ MAP
             END
         END
     END
+    #Aeroways
 
 #---- LEVEL 11 ----#
     LAYER
@@ -1744,6 +1577,48 @@ MAP
                     OUTLINECOLOR 0 0 0
                     WIDTH 0.3
                 END
+            END
+        END
+    END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 524288
+        MINSCALEDENOM 262144
+        NAME 'aeroways11'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 1
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 0
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 0.5
             END
         END
     END
@@ -2199,6 +2074,48 @@ MAP
                     OUTLINECOLOR 0 0 0
                     WIDTH 0.3
                 END
+            END
+        END
+    END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 262144
+        MINSCALEDENOM 131072
+        NAME 'aeroways12'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 2
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 0
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 0.5
             END
         END
     END
@@ -2840,6 +2757,48 @@ MAP
                     OUTLINECOLOR 0 0 0
                     WIDTH 0.3
                 END
+            END
+        END
+    END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 131072
+        MINSCALEDENOM 65536
+        NAME 'aeroways13'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 4
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 0
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 1
             END
         END
     END
@@ -3513,6 +3472,48 @@ MAP
                     OUTLINECOLOR 0 0 0
                     WIDTH 0.3
                 END
+            END
+        END
+    END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 65536
+        MINSCALEDENOM 32768
+        NAME 'aeroways14'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 9
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 0
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 2
             END
         END
     END
@@ -4538,6 +4539,48 @@ MAP
                     OUTLINECOLOR 0 0 0
                     WIDTH 0.3
                 END
+            END
+        END
+    END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 32768
+        MINSCALEDENOM 16384
+        NAME 'aeroways15'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 15
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 0
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 4
             END
         END
     END
@@ -5873,6 +5916,48 @@ MAP
             END
         END
     END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 16384
+        MINSCALEDENOM 8192
+        NAME 'aeroways16'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 30
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 1
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 8
+            END
+        END
+    END
 
 #---- LEVEL 17 ----#
     LAYER
@@ -7205,6 +7290,48 @@ MAP
             END
         END
     END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 8192
+        MINSCALEDENOM 4096
+        NAME 'aeroways17'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 40
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 1
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 12
+            END
+        END
+    END
 
 #---- LEVEL 18 ----#
     LAYER
@@ -8498,15 +8625,59 @@ MAP
             END
         END
     END
+    #Aeroways
+    LAYER
+        MAXSCALEDENOM 4096
+        MINSCALEDENOM 2048
+        NAME 'aeroways18'
+        TYPE LINE
+        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
+        CONNECTIONTYPE POSTGIS
+        GROUP 'default'
+        STATUS ON
+        PROJECTION
+            'init=epsg:900913'
+        END
+        PROCESSING 'LABEL_NO_CLIP=ON'
+        PROCESSING 'CLOSE_CONNECTION=DEFER'
+        DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
+        CLASSITEM 'type'
+        CLASS
+            EXPRESSION 'runway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 40
+                LINECAP BUTT
+                LINEJOIN MITER
+            END
+            STYLE
+                COLOR 80 80 80
+                WIDTH 1
+                PATTERN
+                    2 2
+                END
+                LINECAP BUTT
+            END
+        END
+        CLASS
+            EXPRESSION 'taxiway'
+            STYLE
+                COLOR 180 180 180
+                WIDTH 12
+            END
+        END
+    END
 
 #---- LEVEL 19 ----#
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 #---- LEVEL 20 ----#
     #Railways
     #Roads
     #Shields
+    #Aeroways
 
 END
