@@ -9,16 +9,16 @@ MAP
     UNITS meters
     EXTENT -2196884.9907466 1230842.0069497 -1026475.0681291 2009142.4106119
     IMAGECOLOR '#E5E5E5'
-    SHAPEPATH '../pdata/osm/'
     WEB
         METADATA
-            "ows_enable_request" "*"
+            "ows_enable_request"      "*"
             "wms_srs" "EPSG:900913 EPSG:4326"
             "labelcache_map_edge_buffer" "-10"
-            "wms_title" "Senegal OSM Map"
+            "wms_title" "OSM Map"
         END
         IMAGEPATH '/tmp/ms_tmp/'
         IMAGEURL '/ms_tmp/'
+        TEMPLATE 'blank.html'
     END
     DEBUG 5
     PROJECTION
@@ -36,7 +36,13 @@ MAP
         PROJECTION
             'init=epsg:4326'
         END
-        DATA "../pdata/osm/TM_WORLD_BORDERS-0.3.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/TM_WORLD_BORDERS-0.3.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -60,7 +66,13 @@ MAP
         PROJECTION
             'init=epsg:4326'
         END
-        DATA "../pdata/osm/TM_WORLD_BORDERS-0.3.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/TM_WORLD_BORDERS-0.3.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -71,7 +83,7 @@ MAP
     LAYER
         MAXSCALEDENOM 268435456
         MINSCALEDENOM 134217728
-        NAME 'admin_fr2'
+        NAME 'admin2'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -82,6 +94,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -110,7 +128,13 @@ MAP
         PROJECTION
             'init=epsg:4326'
         END
-        DATA "../pdata/osm/TM_WORLD_BORDERS-0.3.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/TM_WORLD_BORDERS-0.3.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -121,7 +145,7 @@ MAP
     LAYER
         MAXSCALEDENOM 134217728
         MINSCALEDENOM 67108864
-        NAME 'admin_fr3'
+        NAME 'admin3'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -132,6 +156,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -160,7 +190,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/shoreline_300.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/shoreline_300.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -171,7 +207,7 @@ MAP
     LAYER
         MAXSCALEDENOM 67108864
         MINSCALEDENOM 33554432
-        NAME 'admin_fr4'
+        NAME 'admin4'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -182,6 +218,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -209,7 +251,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/shoreline_300.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/shoreline_300.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -220,7 +268,7 @@ MAP
     LAYER
         MAXSCALEDENOM 33554432
         MINSCALEDENOM 16777216
-        NAME 'admin_fr5'
+        NAME 'admin5'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -231,6 +279,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -259,7 +313,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_gen1 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_ngen00 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
         #Bridges
@@ -280,7 +340,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/shoreline_300.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/shoreline_300.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -291,7 +357,7 @@ MAP
     LAYER
         MAXSCALEDENOM 16777216
         MINSCALEDENOM 8388608
-        NAME 'admin_fr6'
+        NAME 'admin6'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -302,6 +368,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -328,7 +400,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         CLASS
@@ -359,7 +437,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_gen1 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_ngen00 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
         #Bridges
@@ -380,7 +464,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -391,7 +481,7 @@ MAP
     LAYER
         MAXSCALEDENOM 8388608
         MINSCALEDENOM 4194304
-        NAME 'admin_fr7'
+        NAME 'admin7'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -402,6 +492,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -441,7 +537,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         CLASS
@@ -472,7 +574,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name,ref,type from osm_roads_gen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select osm_id,geometry,name,ref,type from osm_roads_ngen00 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         #Bridges
@@ -493,7 +601,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -504,7 +618,7 @@ MAP
     LAYER
         MAXSCALEDENOM 4194304
         MINSCALEDENOM 2097152
-        NAME 'admin_fr8'
+        NAME 'admin8'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -515,6 +629,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -554,7 +674,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         CLASS
@@ -585,7 +711,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_gen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_ngen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
         #Bridges
@@ -606,7 +738,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -617,7 +755,7 @@ MAP
     LAYER
         MAXSCALEDENOM 2097152
         MINSCALEDENOM 1048576
-        NAME 'admin_fr9'
+        NAME 'admin9'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -628,6 +766,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -667,7 +811,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         CLASS
@@ -714,6 +864,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name,ref,type  from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified',  'track', 'footway', 'pedestrian') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -757,6 +913,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -775,7 +937,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -797,7 +959,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -820,7 +982,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -831,7 +999,7 @@ MAP
     LAYER
         MAXSCALEDENOM 1048576
         MINSCALEDENOM 524288
-        NAME 'admin_fr10'
+        NAME 'admin10'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -842,6 +1010,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -881,7 +1055,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
         CLASS
@@ -926,6 +1106,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -940,7 +1126,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -985,6 +1171,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name,ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -1076,6 +1268,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -1094,7 +1292,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -1116,7 +1314,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -1139,7 +1337,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -1150,7 +1354,7 @@ MAP
     LAYER
         MAXSCALEDENOM 524288
         MINSCALEDENOM 262144
-        NAME 'admin_fr11'
+        NAME 'admin11'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -1161,6 +1365,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -1200,6 +1410,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -1245,6 +1461,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -1259,7 +1481,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -1303,7 +1525,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways_gen1 where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads_ngen1 where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -1336,6 +1564,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, tunnel, ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified','track', 'footway', 'pedestrian', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -1500,7 +1734,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -1530,6 +1764,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -1548,7 +1788,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -1570,7 +1810,7 @@ MAP
                 MINDISTANCE 150
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -1595,6 +1835,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -1634,7 +1875,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -1645,7 +1892,7 @@ MAP
     LAYER
         MAXSCALEDENOM 262144
         MINSCALEDENOM 131072
-        NAME 'admin_fr12'
+        NAME 'admin12'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -1656,6 +1903,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -1695,6 +1948,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -1742,6 +2001,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -1756,7 +2021,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -1800,7 +2065,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways_gen1 where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads_ngen1 where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -1833,6 +2104,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, tunnel, ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified','track', 'footway', 'pedestrian', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -1997,7 +2274,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -2027,6 +2304,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -2045,7 +2328,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -2067,7 +2350,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -2092,6 +2375,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -2131,7 +2415,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -2142,7 +2432,7 @@ MAP
     LAYER
         MAXSCALEDENOM 131072
         MINSCALEDENOM 65536
-        NAME 'admin_fr13'
+        NAME 'admin13'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -2153,6 +2443,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -2192,6 +2488,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -2239,6 +2541,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -2253,7 +2561,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -2297,7 +2605,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -2330,6 +2644,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, tunnel, ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified','track', 'footway', 'pedestrian', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -2680,7 +3000,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -2710,6 +3030,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -2728,7 +3054,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -2750,7 +3076,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -2775,6 +3101,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -2814,7 +3141,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -2825,7 +3158,7 @@ MAP
     LAYER
         MAXSCALEDENOM 65536
         MINSCALEDENOM 32768
-        NAME 'admin_fr14'
+        NAME 'admin14'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -2836,6 +3169,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -2875,6 +3214,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -2922,6 +3267,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -2936,7 +3287,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -2980,7 +3331,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -3029,6 +3386,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select oneway, osm_id,geometry,name,ref,type,tunnel,bridge from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian', 'service', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -3395,7 +3758,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -3425,6 +3788,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -3443,7 +3812,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -3465,7 +3834,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -3490,6 +3859,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -3529,7 +3899,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -3540,7 +3916,7 @@ MAP
     LAYER
         MAXSCALEDENOM 32768
         MINSCALEDENOM 16384
-        NAME 'admin_fr15'
+        NAME 'admin15'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -3551,6 +3927,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -3590,6 +3972,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -3637,6 +4025,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -3651,7 +4045,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -3676,7 +4070,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -3686,6 +4080,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
         CLASS
@@ -3699,7 +4095,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -3709,6 +4105,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
     END
@@ -3727,7 +4125,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -3776,6 +4180,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select oneway, osm_id,geometry,name,ref,type,tunnel,bridge from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian', 'service', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -4462,7 +4872,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -4492,6 +4902,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -4510,7 +4926,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -4532,7 +4948,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -4557,6 +4973,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -4596,7 +5013,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -4607,7 +5030,7 @@ MAP
     LAYER
         MAXSCALEDENOM 16384
         MINSCALEDENOM 8192
-        NAME 'admin_fr16'
+        NAME 'admin16'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -4618,6 +5041,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -4657,6 +5086,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -4704,6 +5139,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -4718,7 +5159,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -4743,7 +5184,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -4753,6 +5194,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
         CLASS
@@ -4766,7 +5209,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -4776,6 +5219,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
     END
@@ -4794,7 +5239,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -4843,6 +5294,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select oneway, osm_id,geometry,name,ref,type,tunnel,bridge from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian', 'service', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -5836,7 +6293,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -5866,6 +6323,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -5884,7 +6347,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -5906,7 +6369,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -5931,6 +6394,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -5970,7 +6434,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -5981,7 +6451,7 @@ MAP
     LAYER
         MAXSCALEDENOM 8192
         MINSCALEDENOM 4096
-        NAME 'admin_fr17'
+        NAME 'admin17'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -5992,6 +6462,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -6031,6 +6507,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -6078,6 +6560,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -6092,7 +6580,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -6117,7 +6605,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -6127,6 +6615,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
         CLASS
@@ -6140,7 +6630,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -6150,6 +6640,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
     END
@@ -6168,7 +6660,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -6217,6 +6715,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select oneway, osm_id,geometry,name,ref,type,tunnel,bridge from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian', 'service', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -7210,7 +7714,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -7240,6 +7744,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -7258,7 +7768,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -7280,7 +7790,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -7305,6 +7815,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS
@@ -7344,7 +7855,13 @@ MAP
         PROJECTION
             'init=epsg:3857'
         END
-        DATA "../pdata/osm/processed_p.shp"
+        METADATA
+            "wms_title" "land"
+            "wms_name"   "land"
+            "wms_include_items" "all"
+        END
+        TEMPLATE 'blank.html'
+        DATA "../../../../pdata/osm-data/processed_p.shp"
         CLASS
             STYLE
                 COLOR 250 250 250
@@ -7355,7 +7872,7 @@ MAP
     LAYER
         MAXSCALEDENOM 4096
         MINSCALEDENOM 2048
-        NAME 'admin_fr18'
+        NAME 'admin18'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
         CONNECTIONTYPE POSTGIS
@@ -7366,6 +7883,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "admin"
+            "wms_name"   "admin"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
         LABELITEM "name"
         CLASS
@@ -7405,6 +7928,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterarea"
+            "wms_name"   "waterarea"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -7452,6 +7981,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "waterways"
+            "wms_name"   "waterways"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
         CLASSITEM 'type'
         LABELITEM 'name'
@@ -7466,7 +8001,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -7491,7 +8026,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -7501,6 +8036,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
         CLASS
@@ -7514,7 +8051,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -7524,6 +8061,8 @@ MAP
                 OUTLINEWIDTH 1
                 ANGLE FOLLOW
                 BUFFER 3
+                COLOR 170 170 170
+                OUTLINEWIDTH 0
             END
         END
     END
@@ -7542,7 +8081,13 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
-        DATA "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "railways"
+            "wms_name"   "railways"
+            "wms_include_items" "all"
+        END
+        DATA "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
         CLASS
             EXPRESSION ("[tunnel]"= '0')
             STYLE
@@ -7591,6 +8136,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "roads"
+            "wms_name"   "roads"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select oneway, osm_id,geometry,name,ref,type,tunnel,bridge from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian', 'service', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
         LABELITEM 'name'
         CLASSITEM 'type'
@@ -8545,7 +9096,7 @@ MAP
                 PARTIALS FALSE
                 MINFEATURESIZE AUTO
                 ANTIALIAS true
-                FONT 'sc'
+                FONT 'sco'
                 ENCODING 'utf-8'
                 MINDISTANCE 200
                 REPEATDISTANCE 400
@@ -8575,6 +9126,12 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
+        METADATA
+            "wms_title" "shields"
+            "wms_name"   "shields"
+            "wms_include_items" "all"
+        END
         DATA "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
         FILTER (length('[shield_no]') != 0 )
         LABELITEM 'shield_no'
@@ -8593,7 +9150,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 7
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -8615,7 +9172,7 @@ MAP
                 MINDISTANCE 200
                 BUFFER 10
                 SIZE 6
-                #COLOR: 255 255 255
+                COLOR 100 100 100
                 STYLE
                     GEOMTRANSFORM 'labelpoly'
                     COLOR '#F2F2F2'
@@ -8640,6 +9197,7 @@ MAP
         END
         PROCESSING 'LABEL_NO_CLIP=ON'
         PROCESSING 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE 'blank.html'
         DATA 'geometry from (select geometry, osm_id, type from osm_aeroways) as foo using unique osm_id using srid=3857'
         CLASSITEM 'type'
         CLASS

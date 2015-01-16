@@ -14,10 +14,16 @@ LAYER {
 				'init=epsg:3857'
 			}}
         }
+        METADATA {{
+              "wms_title" "land"
+              "wms_name"   "land"
+              "wms_include_items" "all" 
+        }}
+        TEMPLATE: 'blank.html'
 		DATA {
-			1-3: "../pdata/osm/TM_WORLD_BORDERS-0.3.shp"
-            4-6: "../pdata/osm/shoreline_300.shp"
-            7-18: "../pdata/osm/processed_p.shp"
+			1-3: "../../../../pdata/osm-data/TM_WORLD_BORDERS-0.3.shp"
+            4-6: "../../../../pdata/osm-data/shoreline_300.shp"
+            7-18: "../../../../pdata/osm-data/processed_p.shp"
 		}
         CLASS {
             STYLE {
@@ -43,9 +49,14 @@ LAYER {
         TYPE: POLYGON
         @layerconfig
         @connection
+        METADATA {{
+              "wms_title" "land"
+              "wms_name"   "land"
+              "wms_include_items" "all" 
+        }}
 		DATA {
-			1-3: "geometry from (select geometry ,osm_id, type, name  from osm_landusages_gen0 where type in ('forest', 'residential') order by area desc) as foo using unique osm_id using srid=3857"
-            4-9: "geometry from (select geometry ,osm_id, type, name from osm_landusages_gen1 where type in ('forest', 'industrial','commercial','residential','park', 'nature_reserve') order by area desc) as foo using unique osm_id using srid=3857"
+			1-3: "geometry from (select geometry ,osm_id, type, name  from osm_landusages_ngen000 where type in ('forest', 'residential') order by area desc) as foo using unique osm_id using srid=3857"
+            4-9: "geometry from (select geometry ,osm_id, type, name from osm_landusages_ngen1 where type in ('forest', 'industrial','commercial','residential','park', 'nature_reserve') order by area desc) as foo using unique osm_id using srid=3857"
 			10-18: "geometry from (select geometry ,osm_id, type, name from osm_landusages where type in ('forest', 'wood', 'pedestrian','cemetery','industrial','commercial','residential','park','golf_course','parking','stadium','sports_center','pitch', 'nature_reserve', 'apron', 'helipad', 'aerodrome', 'university', 'school', 'college', 'hospital') order by area desc) as foo using unique osm_id using srid=3857"
 		}
     	CLASSITEM: 'type'
@@ -410,10 +421,15 @@ LAYER {
 
 LAYER {
 	2-18 {
-        NAME: 'admin_fr'
+        NAME: 'admin'
         TYPE: POLYGON
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "admin"
+              "wms_name"   "admin"
+              "wms_include_items" "all" 
+        }}
       	DATA {
          	2-18:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
    		}
@@ -457,8 +473,13 @@ LAYER {
         TYPE: POLYGON
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "waterarea"
+              "wms_name"   "waterarea"
+              "wms_include_items" "all" 
+        }}
         DATA {
-	6-10: "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+	6-10: "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
 	11-18: "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
 		}    	
     	LABELITEM: 'name'
@@ -494,6 +515,11 @@ LAYER {
         TYPE: LINE
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "waterways"
+              "wms_name"   "waterways"
+              "wms_include_items" "all" 
+        }}
         DATA {
             10-14: "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
 	   15-18: "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
@@ -523,6 +549,8 @@ LAYER {
             LABEL {
                 15-18 {
                 @labelconfig_waterways
+                COLOR: @ol_gray
+                OUTLINEWIDTH: 0
                 }
             }
         }
@@ -535,6 +563,8 @@ LAYER {
             LABEL {
                 15-18 {
                     @labelconfig_waterways
+                    COLOR: @ol_gray
+                    OUTLINEWIDTH: 0
                 }
             }
         }
@@ -548,10 +578,15 @@ LAYER {
         TYPE: LINE
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "railways"
+              "wms_name"   "railways"
+              "wms_include_items" "all" 
+        }}
 		DATA {
-			1-6: "geometry from (select geometry, osm_id, tunnel from osm_railways_gen0 where type='rail') as foo using unique osm_id using srid=3857"
-            7-12: "geometry from (select geometry, osm_id, tunnel from osm_railways_gen1 where type='rail') as foo using unique osm_id using srid=3857"
-            13-18: "geometry from (select geometry, osm_id, tunnel from osm_railways where type='rail') as foo using unique osm_id using srid=3857"
+			1-6: "geometry from (select geometry, osm_id, tunnel from osm_roads_ngen1 where type='rail') as foo using unique osm_id using srid=3857"
+            7-12: "geometry from (select geometry, osm_id, tunnel from osm_roads_ngen1 where type='rail') as foo using unique osm_id using srid=3857"
+            13-18: "geometry from (select geometry, osm_id, tunnel from osm_roads where type='rail') as foo using unique osm_id using srid=3857"
 		}
 		CLASS {
             EXPRESSION: ("[tunnel]"= '0')
@@ -621,10 +656,15 @@ LAYER {
         TYPE: LINE
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "roads"
+              "wms_name"   "roads"
+              "wms_include_items" "all" 
+        }}
 		DATA {
-	1-6: "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_gen1 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
-        7: "geometry from (select osm_id,geometry,name,ref,type from osm_roads_gen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"            
-        8: "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_gen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
+	1-6: "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_ngen00 where type in ('motorway', 'trunk') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
+        7: "geometry from (select osm_id,geometry,name,ref,type from osm_roads_ngen00 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"            
+        8: "geometry from (select osm_id,geometry,name,ref,type  from osm_roads_ngen1 where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
 	9: "geometry from (select osm_id,geometry,name,ref,type  from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified',  'track', 'footway', 'pedestrian') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
 	10: "geometry from (select osm_id,geometry,name,ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified', 'track', 'footway', 'pedestrian') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
 	11-13: "geometry from (select osm_id,geometry,name, tunnel, ref,type from osm_roads where type in ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary', 'residential', 'road', 'living_street', 'unclassified','track', 'footway', 'pedestrian', 'ferry') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=900913"
@@ -1629,8 +1669,13 @@ LAYER {
         TYPE: LINE
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "shields"
+              "wms_name"   "shields"
+              "wms_include_items" "all" 
+        }}
         DATA {
-        	1-7: "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads_gen0 where type = 'motorway' order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857" 
+        	1-7: "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads_ngen00 where type = 'motorway' order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857" 
 		8-18: "geometry from (select osm_id,geometry,name, ref,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[1] as shield_class,(regexp_matches(ref, '([a-z,A-Z]+)? ?([0-9]+)[^;]*', 'g'))[2] as shield_no,type,tunnel,bridge from osm_roads where type in ('motorway', 'trunk', 'primary') order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=3857"
 		}
         FILTER: (length('[shield_no]') != 0 )
@@ -1643,7 +1688,7 @@ LAYER {
                 LABEL {
 					@labelconfig_shields
 					SIZE: 7
-                	##COLOR: 255 255 255
+                	COLOR: 100 100 100
                     STYLE {
                         GEOMTRANSFORM: 'labelpoly'
                         COLOR: '#F2F2F2'
@@ -1659,7 +1704,7 @@ LAYER {
                 LABEL {
 					@labelconfig_shields
 					SIZE: 6
-                	##COLOR: 255 255 255
+                	COLOR:100 100 100
                     STYLE {
                         GEOMTRANSFORM: 'labelpoly'
                         COLOR: '#F2F2F2'
@@ -1816,7 +1861,7 @@ LAYER {
                 @labelconfig
                 FONT: 'sc'
                 SIZE: 6
-                COLOR: 255 255 255
+                COLOR: @ol_gray
                 BUFFER: 10
                 PRIORITY {
                 	1-15: 5
@@ -1836,7 +1881,7 @@ LAYER {
                 @labelconfig
                 FONT: 'sc'
                 SIZE: 6
-                COLOR: 255 255 255
+                COLOR: @ol_gray
                 BUFFER: 10
                 PRIORITY {
                 	1-15: 5
@@ -1856,7 +1901,7 @@ LAYER {
                 @labelconfig
                 FONT: 'sc'
                 SIZE: 6
-                COLOR: 255 255 255
+                COLOR: @ol_gray
                 BUFFER: 10
                 PRIORITY {
                 	1-15: 5

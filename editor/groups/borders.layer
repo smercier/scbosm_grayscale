@@ -1,9 +1,14 @@
 LAYER {
 	2-18 {
-        NAME: 'admin_fr'
+        NAME: 'admin'
         TYPE: POLYGON
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "admin"
+              "wms_name"   "admin"
+              "wms_include_items" "all" 
+        }}
       	DATA {
          	2-18:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
    		}

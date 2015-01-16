@@ -12,6 +12,7 @@ VARIABLES {
         }}
         PROCESSING: 'LABEL_NO_CLIP=ON'
         PROCESSING: 'CLOSE_CONNECTION=DEFER'
+        TEMPLATE: 'blank.html' 
     }
 
     	##Water
@@ -25,6 +26,7 @@ VARIABLES {
 	}
     land_clr: 250 250 250
     land_ol_clr: 250 250 250
+    ol_gray: 170 170 170
     
  	greenland_clr: '#eef4e3'
     nature_reserve_clr: '#d8e6be'
@@ -184,7 +186,7 @@ VARIABLES {
 	}
 	labelconfig_waterways {
 		@labelconfig
-        FONT: 'sc'
+        FONT: 'sco'
         ENCODING: 'utf-8'
         MINDISTANCE: 200
         REPEATDISTANCE: 400

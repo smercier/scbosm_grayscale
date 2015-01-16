@@ -4,8 +4,13 @@ LAYER {
         TYPE: POLYGON
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "waterarea"
+              "wms_name"   "waterarea"
+              "wms_include_items" "all" 
+        }}
         DATA {
-	6-10: "geometry from (select geometry,osm_id ,name,type from osm_waterareas_gen1) as foo using unique osm_id using srid=3857"
+	6-10: "geometry from (select geometry,osm_id ,name,type from osm_waterareas_ngen1) as foo using unique osm_id using srid=3857"
 	11-18: "geometry from (select geometry,osm_id ,name,type from osm_waterareas) as foo using unique osm_id using srid=3857"
 		}    	
     	LABELITEM: 'name'
@@ -41,6 +46,11 @@ LAYER {
         TYPE: LINE
         @connection
         @layerconfig
+        METADATA {{
+              "wms_title" "waterways"
+              "wms_name"   "waterways"
+              "wms_include_items" "all" 
+        }}
         DATA {
             10-14: "geometry from (select geometry, osm_id, type, name from osm_waterways where type = 'river') as foo using unique osm_id using srid=3857"
 	   15-18: "geometry from (select geometry, osm_id, type, name from osm_waterways) as foo using unique osm_id using srid=3857"
@@ -70,6 +80,8 @@ LAYER {
             LABEL {
                 15-18 {
                 @labelconfig_waterways
+                COLOR: @ol_gray
+                OUTLINEWIDTH: 0
                 }
             }
         }
@@ -82,6 +94,8 @@ LAYER {
             LABEL {
                 15-18 {
                     @labelconfig_waterways
+                    COLOR: @ol_gray
+                    OUTLINEWIDTH: 0
                 }
             }
         }

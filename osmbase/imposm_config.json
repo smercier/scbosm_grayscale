@@ -1,0 +1,5 @@
+{
+    "cachedir": "./cache",
+    "mapping": "../../osmbase/osm_basemap.json",
+    "connection": "postgis://osm:osm@localhost/osm"
+}

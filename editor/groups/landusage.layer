@@ -11,9 +11,14 @@ LAYER {
         TYPE: POLYGON
         @layerconfig
         @connection
+        METADATA {{
+              "wms_title" "land"
+              "wms_name"   "land"
+              "wms_include_items" "all" 
+        }}
 		DATA {
-			1-3: "geometry from (select geometry ,osm_id, type, name  from osm_landusages_gen0 where type in ('forest', 'residential') order by area desc) as foo using unique osm_id using srid=3857"
-            4-9: "geometry from (select geometry ,osm_id, type, name from osm_landusages_gen1 where type in ('forest', 'industrial','commercial','residential','park', 'nature_reserve') order by area desc) as foo using unique osm_id using srid=3857"
+			1-3: "geometry from (select geometry ,osm_id, type, name  from osm_landusages_ngen000 where type in ('forest', 'residential') order by area desc) as foo using unique osm_id using srid=3857"
+            4-9: "geometry from (select geometry ,osm_id, type, name from osm_landusages_ngen1 where type in ('forest', 'industrial','commercial','residential','park', 'nature_reserve') order by area desc) as foo using unique osm_id using srid=3857"
 			10-18: "geometry from (select geometry ,osm_id, type, name from osm_landusages where type in ('forest', 'wood', 'pedestrian','cemetery','industrial','commercial','residential','park','golf_course','parking','stadium','sports_center','pitch', 'nature_reserve', 'apron', 'helipad', 'aerodrome', 'university', 'school', 'college', 'hospital') order by area desc) as foo using unique osm_id using srid=3857"
 		}
     	CLASSITEM: 'type'

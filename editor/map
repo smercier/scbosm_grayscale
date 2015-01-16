@@ -9,16 +9,16 @@ MAP {
     UNITS: meters
     EXTENT:-2196884.9907466 1230842.0069497 -1026475.0681291 2009142.4106119
     IMAGECOLOR: '#E5E5E5'
-    SHAPEPATH: '../pdata/osm/'
     WEB {
         METADATA {{
-            "ows_enable_request" "*"
+            "ows_enable_request"      "*"
             "wms_srs" "EPSG:900913 EPSG:4326"
             "labelcache_map_edge_buffer" "-10"
-            "wms_title" "Senegal OSM Map"
+            "wms_title" "OSM Map"
         }}
         IMAGEPATH: '/tmp/ms_tmp/'
         IMAGEURL: '/ms_tmp/'
+        TEMPLATE: 'blank.html'
     }
     DEBUG: 5
     PROJECTION {{

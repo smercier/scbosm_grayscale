@@ -1,30 +1,37 @@
 == Grayscale Scribe OSM map ==
 
-Get Scribeui up and running, git this and enjoy OSM.  This map is still work in progress.  Landusage and Places are not in it.
+Get Scribeui up and running, git this and enjoy OSM.  You need to install data with ScribeUI Makefile.
 
 Require
 -------
 
   * Mapserver 6.x
   * Postgresql/Postgis 2.x
-  * imposm
-  * osmosis
+  * imposm3
 
-imposm
-------
-Mapping of OSM data import from imposm. Edit makefile to download your source data file from Geofabrik and clip it with osmosis:
-	
-    cd osmbase
+Build Database 
+---------------
     
-    ## edit database connexion in makefile
-	sudo vim makefile
+sudo su postgres -c'createdb -E UTF8 -T template0 template_postgis'
+sudo su postgres -c'psql -U postgres -d template_postgis -c"CREATE EXTENSION postgis;"'
+sudo su postgres -c'psql -U postgres -d template_postgis -c "GRANT ALL ON geometry_columns TO PUBLIC;"'
+sudo su postgres -c'psql -U postgres -d template_postgis -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"'
+sudo su postgres -c'psql -U postgres -d template_postgis -c "GRANT ALL ON geography_columns TO PUBLIC;"'
+sudo su postgres -c'psql -U postgres -c "CREATE USER osm WITH PASSWORD '"'"'osm'"'"';"'
+##sudo su postgres -c'dropdb osm'
+sudo su postgres -c'createdb -E utf8 -T template_postgis -O osm osm'
+sudo su postgres -c'psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE osm to osm;"'
     
-    ## import osm shapefiles(processed_p,shoreline_300 )  for land cover
-    sudo make
-    
-    ## download osm source file and process it with osmosis and imposm
-	sudo make imposm
-    
-    ## clean up tmp and zip/bz2 files
-	sudo make clean
-    
+Install and run imposm3
+-----------------------
+sudo mkdir data && cd data
+wget http://imposm.org/static/rel/imposm3-0.1dev-20140624-cf8c196-linux-x86-64.tar.gz
+tar -xvf imposm3-0.1dev-20140624-cf8c196-linux-x86-64.tar.gz
+mv imposm3-0.1dev-20140624-cf8c196-linux-x86-64 imposm3bin
+cd imposm3bin && mkdir cache
+sudo wget http://download.geofabrik.de/north-america/canada/quebec-latest.osm.pbf
+sudo ./imposm3 import -config ../../osmbase/imposm_config.json -read quebec-latest.osm.pbf -diff -overwritecache
+sudo ./imposm3 import -config ../../osmbase/imposm_config.json -write -diff -optimize
+sudo ./imposm3 import -config ../../osmbase/imposm_config.json -deployproduction
+        
+      
