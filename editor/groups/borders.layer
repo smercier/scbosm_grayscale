@@ -1,5 +1,5 @@
 LAYER {
-	2-18 {
+	12-18 {
         NAME: 'admin'
         TYPE: POLYGON
         @connection
@@ -10,7 +10,9 @@ LAYER {
               "wms_include_items" "all" 
         }}
       	DATA {
-         	2-18:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
+         	2-5:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin where admin_level<3 ) as foo using unique osm_id using srid=3857"
+            6-10:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin where admin_level<5 ) as foo using unique osm_id using srid=3857"
+           11-18:  "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
    		}
         LABELITEM: "name"
         1-18{

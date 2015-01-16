@@ -80,38 +80,6 @@ MAP
             END
         END
     END
-    LAYER
-        MAXSCALEDENOM 268435456
-        MINSCALEDENOM 134217728
-        NAME 'admin2'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.3
-                PATTERN
-                    5.0 5.0
-                END
-            END
-        END
-    END
     #Railways
     #Roads
     #Shields
@@ -139,38 +107,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 134217728
-        MINSCALEDENOM 67108864
-        NAME 'admin3'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.3
-                PATTERN
-                    5.0 5.0
-                END
             END
         END
     END
@@ -204,37 +140,6 @@ MAP
             END
         END
     END
-    LAYER
-        MAXSCALEDENOM 67108864
-        MINSCALEDENOM 33554432
-        NAME 'admin4'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                PATTERN
-                    5.0 5.0
-                END
-            END
-        END
-    END
     #Railways
     #Roads
     #Shields
@@ -262,38 +167,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 33554432
-        MINSCALEDENOM 16777216
-        NAME 'admin5'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
             END
         END
     END
@@ -351,38 +224,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 16777216
-        MINSCALEDENOM 8388608
-        NAME 'admin6'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
             END
         END
     END
@@ -481,51 +322,6 @@ MAP
     LAYER
         MAXSCALEDENOM 8388608
         MINSCALEDENOM 4194304
-        NAME 'admin7'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
-            END
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                ANTIALIAS true
-                FONT 'sc'
-                ANGLE FOLLOW
-                SIZE 8
-                COLOR '#564A3D'
-                OUTLINECOLOR 255 255 255
-                OUTLINEWIDTH 1
-                REPEATDISTANCE 100
-                MINDISTANCE 500
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 8388608
-        MINSCALEDENOM 4194304
         NAME 'waterarea7'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
@@ -618,51 +414,6 @@ MAP
     LAYER
         MAXSCALEDENOM 4194304
         MINSCALEDENOM 2097152
-        NAME 'admin8'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
-            END
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                ANTIALIAS true
-                FONT 'sc'
-                ANGLE FOLLOW
-                SIZE 8
-                COLOR '#564A3D'
-                OUTLINECOLOR 255 255 255
-                OUTLINEWIDTH 1
-                REPEATDISTANCE 100
-                MINDISTANCE 500
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 4194304
-        MINSCALEDENOM 2097152
         NAME 'waterarea8'
         TYPE POLYGON
         CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
@@ -749,51 +500,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 2097152
-        MINSCALEDENOM 1048576
-        NAME 'admin9'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
-            END
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                ANTIALIAS true
-                FONT 'sc'
-                ANGLE FOLLOW
-                SIZE 8
-                COLOR '#564A3D'
-                OUTLINECOLOR 255 255 255
-                OUTLINEWIDTH 1
-                REPEATDISTANCE 100
-                MINDISTANCE 500
             END
         END
     END
@@ -993,51 +699,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 1048576
-        MINSCALEDENOM 524288
-        NAME 'admin10'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
-            END
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                ANTIALIAS true
-                FONT 'sc'
-                ANGLE FOLLOW
-                SIZE 8
-                COLOR '#564A3D'
-                OUTLINECOLOR 255 255 255
-                OUTLINEWIDTH 1
-                REPEATDISTANCE 100
-                MINDISTANCE 500
             END
         END
     END
@@ -1348,51 +1009,6 @@ MAP
             STYLE
                 COLOR 250 250 250
                 OUTLINECOLOR 250 250 250
-            END
-        END
-    END
-    LAYER
-        MAXSCALEDENOM 524288
-        MINSCALEDENOM 262144
-        NAME 'admin11'
-        TYPE POLYGON
-        CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"
-        CONNECTIONTYPE POSTGIS
-        GROUP 'default'
-        STATUS ON
-        PROJECTION
-            'init=epsg:900913'
-        END
-        PROCESSING 'LABEL_NO_CLIP=ON'
-        PROCESSING 'CLOSE_CONNECTION=DEFER'
-        TEMPLATE 'blank.html'
-        METADATA
-            "wms_title" "admin"
-            "wms_name"   "admin"
-            "wms_include_items" "all"
-        END
-        DATA "geometry from (select geometry,osm_id, name as name,admin_level from osm_admin ) as foo using unique osm_id using srid=3857"
-        LABELITEM "name"
-        CLASS
-            STYLE
-                OUTLINECOLOR 200 200 200
-                SIZE 0.9
-                PATTERN
-                    5.0 5.0
-                END
-            END
-            LABEL
-                TYPE TRUETYPE
-                PARTIALS FALSE
-                ANTIALIAS true
-                FONT 'sc'
-                ANGLE FOLLOW
-                SIZE 8
-                COLOR '#564A3D'
-                OUTLINECOLOR 255 255 255
-                OUTLINEWIDTH 1
-                REPEATDISTANCE 100
-                MINDISTANCE 500
             END
         END
     END
